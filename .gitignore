@@ -1,0 +1,13 @@
+node_modules/
+**/node_modules/
+.env
+.DS_Store
+dist/
+.next/
+out/
+build/
+output/
+**/output/
+server/uploads/
+server/output/
+client/.next/
