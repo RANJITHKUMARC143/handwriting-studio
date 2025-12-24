@@ -8,7 +8,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
 import mammoth from 'mammoth';
-import PDFParse from 'pdf-parse';
+import PDFParse = require('pdf-parse');
 import { saveText, getJob } from './services/storage';
 import { addGenerationJob, initWorker, pdfQueue } from './services/queue';
 import { initDatabase, closeDatabase } from './db';
