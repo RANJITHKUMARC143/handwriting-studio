@@ -8,7 +8,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
 import mammoth from 'mammoth';
-import { PDFParse } from 'pdf-parse';
+import PDFParse from 'pdf-parse';
 import { saveText, getJob } from './services/storage';
 import { addGenerationJob, initWorker, pdfQueue } from './services/queue';
 import { initDatabase, closeDatabase } from './db';
@@ -83,8 +83,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
             if (mimeType === 'application/pdf') {
                 console.log('Extracting text from PDF...');
                 const buffer = await fs.readFile(filePath);
-                const parser = new PDFParse({ data: buffer });
-                const result = await parser.getText();
+                const result = await PDFParse(buffer);
                 text = result.text;
 
                 if (!text || text.trim().length === 0) {
