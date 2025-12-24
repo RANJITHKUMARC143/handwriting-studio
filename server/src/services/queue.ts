@@ -1,13 +1,24 @@
 import { Queue, Worker, Job } from 'bullmq';
 import { processJob } from '../worker/processor';
 import { saveJob } from './storage';
+import IORedis from 'ioredis';
 
 const QUEUE_NAME = 'pdf-generation';
 
-const connection = {
-    host: process.env.REDIS_HOST || 'localhost',
-    port: parseInt(process.env.REDIS_PORT || '6379'),
+// Redis Connection Setup
+const redisUrl = process.env.REDIS_HOST || 'localhost';
+const connectionOptions = {
+    maxRetriesPerRequest: null,
 };
+
+// Create Redis connection (handle both URL string and split host/port)
+const connection = redisUrl.startsWith('redis://')
+    ? new IORedis(redisUrl, connectionOptions)
+    : new IORedis({
+        host: redisUrl,
+        port: parseInt(process.env.REDIS_PORT || '6379'),
+        ...connectionOptions
+    });
 
 export const pdfQueue = new Queue(QUEUE_NAME, { connection });
 
