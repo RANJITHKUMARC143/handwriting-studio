@@ -9,6 +9,17 @@ export const FONTS = [
     'Handlee',
     'Architects Daughter',
     'Nothing You Could Do',
+    // New realistic handwriting fonts
+    'Permanent Marker',
+    'Covered By Your Grace',
+    'Rock Salt',
+    'Reenie Beanie',
+    'Amatic SC',
+    'Satisfy',
+    'Dancing Script',
+    'Pacifico',
+    'Courgette',
+    'Bad Script',
 ];
 
 export interface HandwritingSettings {
@@ -22,7 +33,7 @@ export interface HandwritingSettings {
     /** @deprecated */
     paperType?: 'plain' | 'lined' | 'grid';
     paperPattern: 'plain' | 'lined' | 'grid';
-    paperColor: 'white' | 'warm' | 'vintage';
+    paperColor: 'white' | 'warm' | 'vintage' | 'grey-light' | 'grey-medium' | 'grey-dark';
     margins: { top: number; right: number; bottom: number; left: number };
     randomization: {
         baselineJitter: number; // max vertical offset

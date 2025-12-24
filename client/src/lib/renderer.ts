@@ -23,7 +23,10 @@ export function renderPage(
     const paperColors = {
         white: '#ffffff',
         warm: '#f9f5eb',
-        vintage: '#f0e6d2'
+        vintage: '#f0e6d2',
+        'grey-light': '#f5f5f5',
+        'grey-medium': '#e8e8e8',
+        'grey-dark': '#d3d3d3'
     };
     ctx.fillStyle = paperColors[settings.paperColor] || '#ffffff';
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);

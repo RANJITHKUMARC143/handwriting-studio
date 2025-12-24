@@ -1,5 +1,6 @@
 import { Queue, Worker, Job } from 'bullmq';
 import { processJob } from '../worker/processor';
+import { saveJob } from './storage';
 
 const QUEUE_NAME = 'pdf-generation';
 
@@ -29,5 +30,15 @@ export function initWorker() {
 }
 
 export async function addGenerationJob(textId: string, settings: any) {
-    return await pdfQueue.add('generate', { textId, settings });
+    const job = await pdfQueue.add('generate', { textId, settings });
+
+    // Save job to database
+    try {
+        await saveJob(job.id as string, textId, settings);
+    } catch (error) {
+        console.error('Failed to save job to database:', error);
+        // Continue anyway - the job is in Redis
+    }
+
+    return job;
 }

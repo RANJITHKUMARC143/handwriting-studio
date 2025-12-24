@@ -9,6 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource/allura": "^5.2.8",
+    "@fontsource/amatic-sc": "^5.2.7",
+    "@fontsource/cookie": "^5.2.7",
+    "@fontsource/courgette": "^5.2.7",
+    "@fontsource/dancing-script": "^5.2.8",
+    "@fontsource/great-vibes": "^5.2.8",
+    "@fontsource/pacifico": "^5.2.7",
+    "@fontsource/permanent-marker": "^5.2.7",
+    "@fontsource/reenie-beanie": "^5.2.8",
+    "@fontsource/satisfy": "^5.2.7",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
