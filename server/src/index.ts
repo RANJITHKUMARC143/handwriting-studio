@@ -1,8 +1,5 @@
-// Load environment variables FIRST before any other imports
-import dns from 'dns';
-// Force IPv4 resolution to prevent connection errors on Render/Supabase (fixes ENETUNREACH)
-try { dns.setDefaultResultOrder('ipv4first'); } catch (e) { console.warn('Could not set DNS order:', e); }
-
+// Load environment variables and polyfills FIRST
+import './dns-polyfill'; // Must be first to fix DNS order
 import dotenv from 'dotenv';
 dotenv.config();
 
