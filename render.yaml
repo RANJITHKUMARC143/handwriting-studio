@@ -2,9 +2,8 @@ services:
   - type: web
     name: text-to-handwriting-api
     env: node
-    root: server
-    buildCommand: npm install && ls -F node_modules/ && npm run build
-    startCommand: npm run start:prod
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm run start:prod
     envVars:
       - key: DATABASE_URL
         sync: false
