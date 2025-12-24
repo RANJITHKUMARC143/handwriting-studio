@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: text-to-handwriting-api
+    env: node
+    root: server
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: handwriting-redis
+          property: host
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: handwriting-redis
+          property: port
+      - key: NODE_ENV
+        value: production
+      - key: USE_IN_MEMORY_STORAGE
+        value: false
+
+  - type: redis
+    name: handwriting-redis
+    ipAllowList: [] # internal only

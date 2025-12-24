@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",
     "start": "ts-node src/index.ts",
+    "start:prod": "node dist/index.js",
     "build": "tsc",
     "migrate": "node migrate.js",
     "migrate:storage": "node migrate-storage.js"
