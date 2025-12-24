@@ -84,7 +84,9 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
             if (mimeType === 'application/pdf') {
                 console.log('Extracting text from PDF...');
                 const buffer = await fs.readFile(filePath);
-                const parser = new PDFParse(buffer);
+                // Convert Node Buffer to pure Uint8Array to satisfy strict library checks
+                const pureUint8 = new Uint8Array(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
+                const parser = new PDFParse(pureUint8);
                 const result = await parser.getText();
                 text = result.text;
 
